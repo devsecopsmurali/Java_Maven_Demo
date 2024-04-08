@@ -1,12 +1,5 @@
 pipeline {
-    agent any
-
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
-    }
-
-   environment {
+    environment {
         MAVEN_HOME = tool('M3')
     }
 
@@ -15,5 +8,4 @@ pipeline {
            sh '${MAVEN_HOME}/bin/mvn -B verify'
         }
     }
-              }
-    
+}
