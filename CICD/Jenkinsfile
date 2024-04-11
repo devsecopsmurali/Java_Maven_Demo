@@ -15,6 +15,11 @@ pipeline {
               git branch: 'main', url: 'https://github.com/devsecopsmurali/Java_Maven_Demo.git'
            }
         }
+        stage('Build') { 
+            steps {
+                sh 'mvn -B -DskipTests clean package' 
+            }
+        }
        stage('Maven') {
             steps {
                  script {
