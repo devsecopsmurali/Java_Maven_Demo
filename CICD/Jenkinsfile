@@ -12,14 +12,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from version control
-                git 'https://github.com/devsecopsmurali/Java_Maven_Demo.git'
-            }
+              git branch: 'main', url: 'https://github.com/devsecopsmurali/Java_Maven_Demo.git'
+           }
         }
        stage('Maven') {
             steps {
-                // Use Maven to build your project
-                script {
+                 script {
                     sh 'mvn clean package'
                 }
             }
