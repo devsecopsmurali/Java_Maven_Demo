@@ -1,12 +1,17 @@
 pipeline {
     agents any
-    environment {
-        MAVEN_HOME = tool('M3')
+     environment {
+        // Define the environment variables for Maven and Java
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk' // Update with your Java installation directory
+        PATH = "$JAVA_HOME/bin:$PATH"
+        MAVEN_HOME = '/usr/share/maven' // Update with your Maven installation directory
+        PATH = "$MAVEN_HOME/bin:$PATH"
     }
+
 
     stages {
         stage('Maven') {
-           sh '${MAVEN_HOME}/bin/mvn -B verify'
+           sh 'mvn clean package'
         }
     }
 }
