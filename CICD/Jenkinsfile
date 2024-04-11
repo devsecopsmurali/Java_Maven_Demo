@@ -1,17 +1,28 @@
 pipeline {
-    agents any
-     environment {
-        // Define the environment variables for Maven and Java
-        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk' // Update with your Java installation directory
-        PATH = "$JAVA_HOME/bin:$PATH"
-        MAVEN_HOME = '/usr/share/maven' // Update with your Maven installation directory
-        PATH = "$MAVEN_HOME/bin:$PATH"
-    }
+    agent any
+    //  environment {
+    //     // Define the environment variables for Maven and Java
+    //     JAVA_HOME = '/usr/lib/jvm/java-17-openjdk' // Update with your Java installation directory
+    //     PATH = "$JAVA_HOME/bin:$PATH"
+    //     MAVEN_HOME = '/usr/share/maven' // Update with your Maven installation directory
+    //     PATH = "$MAVEN_HOME/bin:$PATH"
+    // }
 
 
     stages {
-        stage('Maven') {
-           sh 'mvn clean package'
+        stage('Checkout') {
+            steps {
+                // Checkout your source code from version control
+                git 'https://github.com/devsecopsmurali/Java_Maven_Demo.git'
+            }
+        }
+       stage('Maven') {
+            steps {
+                // Use Maven to build your project
+                script {
+                    sh 'mvn clean package'
+                }
+            }
         }
     }
 }
